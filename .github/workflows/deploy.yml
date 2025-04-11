@@ -20,10 +20,10 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no root@13.213.10.7 << 'EOF' 
+          ssh -o StrictHostKeyChecking=no ec2-user@13.213.10.7 << 'EOF'
             cd /usr/share/nginx/html/cicd_cloud
             git pull origin main
-            git sudo systemctl restart nginx
+            sudo systemctl restart nginx
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
